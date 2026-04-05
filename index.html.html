@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Track Your Shipment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+    }
+
+    header {
+      background: #ffcc00;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    input {
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      background: #ffcc00;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #e6b800;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .status {
+      font-weight: bold;
+      color: green;
+    }
+
+    .timeline {
+      margin-top: 15px;
+    }
+
+    .timeline div {
+      padding: 8px 0;
+      border-left: 3px solid #ffcc00;
+      margin-left: 10px;
+      padding-left: 10px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  📦DHL express Shipment Tracker
+</header>
+
+<div class="container">
+  <h2>Track Your Package</h2>
+
+  <input type="text" id="trackingInput" placeholder="Enter tracking number">
+  <button onclick="trackPackage()">Track</button>
+
+  <div class="result" id="resultBox">
+    <p><strong>Waybill Number:</strong> <span id="trackNum"></span></p>
+    <p><strong>Status:</strong> <span class="status" id="status"></span></p>
+
+    <div class="timeline" id="timeline"></div>
+  </div>
+</div>
+
+<script>
+  function trackPackage() {
+    const input = document.getElementById("trackingInput").value;
+    const resultBox = document.getElementById("resultBox");
+
+    if (!input) {
+      alert("Please enter a tracking number");
+      return;
+    }
+
+    // Fake tracking data (simulate DHL-like updates)
+    const fakeData = [
+      "Shipment received at facility",
+      "In transit- EST. Delivery; 7th April 2026",
+      "Arrived at destination country",
+      "Out for delivery",
+      "Delivered"
+    ];
+
+    document.getElementById("trackNum").innerText = input;
+
+    status
+    const randomIndex = Math.floor(Math.random() * fakeData.length);
+    document.getElementById("status").innerText = fakeData[randomIndex];
+
+    // Timeline
+    const timeline = document.getElementById("timeline");
+    timeline.innerHTML = "";
+
+    fakeData.forEach((step, index) => {
+      const div = document.createElement("div");
+      div.innerText = step;
+      if (index <= randomIndex) {
+        div.style.color = "green";
+      } else {
+        div.style.color = "gray";
+      }
+      timeline.appendChild(div);
+    });
+
+    resultBox.style.display = "block";
+  }
+</script>
+
+</body>
+</html>
